@@ -46,9 +46,11 @@ async function registerUserController(req,res) {
 
     res.status(201).json({
         message: "USer registered successfully",
-        id: user._id,
-        username: user.username,
-        email: user.email
+        user: {
+            id: user._id,
+            username: user.username,
+            email: user.email
+        }
     })
 
 }
@@ -97,7 +99,7 @@ async function loginUserController(req,res) {
 
 
 /**
- * @name logoutnUserController
+ * @name logoutUserController
  * @description clear token fron user cookies and add the token to blacklist
  * @access Public
  */
