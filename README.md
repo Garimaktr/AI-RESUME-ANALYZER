@@ -282,6 +282,44 @@ npm install
 npm run dev
 ```
 
+## 🚀 Deployment & Environment Setup
+
+This project is configured for deployment using **Vercel** (Frontend) and **Render** (Backend) with MongoDB Atlas.
+
+### 🌐 Live URLs
+* **Frontend:** [https://ai-resume-analyzer-delta-rose.vercel.app](https://ai-resume-analyzer-delta-rose.vercel.app)
+* **Backend:** [https://ai-resume-analyzer-backend-fjdg.onrender.com](https://ai-resume-analyzer-backend-fjdg.onrender.com)
+
+---
+
+### 🔑 Environment Variables
+
+#### 1. Frontend (`/Frontend/.env`)
+Create a `.env` file in the `Frontend` directory with the following variable:
+
+| Variable | Description | Example |
+| :--- | :--- | :--- |
+| `VITE_API_URL` | Base URL of the live backend server | `https://ai-resume-analyzer-backend-fjdg.onrender.com` |
+
+> **Note:** Configure this variable in your **Vercel Dashboard** under **Project Settings > Environment Variables** for production.
+
+#### 2. Backend (`/Backend/.env`)
+Create a `.env` file in the `Backend` directory with the following variables:
+
+| Variable | Description | Example |
+| :--- | :--- | :--- |
+| `PORT` | Port number for Express server | `5000` |
+| `MONGO_URI` | MongoDB Atlas Connection String | `mongodb+srv://...` |
+| `JWT_SECRET` | Secret key for JWT signing | `your_jwt_secret_key` |
+| `FRONTEND_URL` | Production URL of the deployed frontend | `https://ai-resume-analyzer-delta-rose.vercel.app` |
+
+---
+
+### 🔒 CORS & Authentication Configuration
+Because the frontend and backend run on different domains, cross-origin requests requiring credentials (cookies/tokens) are explicitly enabled in `app.js`:
+* `Access-Control-Allow-Origin` is configured dynamically to accept requests from `FRONTEND_URL` and `http://localhost:5173`.
+* Preflight `OPTIONS` requests are handled cleanly via middleware to support secure cookie transfer across origins.
+
 ## Authentication
 
 The application uses JWT-based authentication to secure user-specific resources and protected routes.
