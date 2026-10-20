@@ -5,16 +5,21 @@ const cors = require("cors")
 const app=express()
 app.use(express.json())
 app.use(cookieParser())
-const allowedOrigins = (process.env.FRONTEND_URL || "http://localhost:5173")
+const allowedOrigins = [process.env.FRONTEND_URL ,"http://localhost:5173","https://ai-resume-analyzer-delta-rose.vercel.app"]
     .split(",")
     .map(origin => origin.trim())
 
+// app.use(cors({
+//     origin: (origin, callback) => {
+//         callback(null, !origin || allowedOrigins.includes(origin))
+//     },
+//     credentials: true
+// }))
 app.use(cors({
-    origin: (origin, callback) => {
-        callback(null, !origin || allowedOrigins.includes(origin))
-    },
+    origin: allowedOrigins,
     credentials: true
-}))
+})
+)
 
 // require all the routes
 const authRouter=require("./routes/auth.routes")
