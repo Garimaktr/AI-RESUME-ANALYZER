@@ -1,262 +1,49 @@
 # AI Resume Analyzer
 
-AI Resume Analyzer is a full-stack web application that helps users analyze their resumes against a specific job description. It identifies relevant skills, highlights potential skill gaps, generates technical and behavioral insights, and provides a job-specific study plan to help users prepare for their target role.
+AI Resume Analyzer helps you prepare for a specific job by comparing its description with your resume and optional self-description. It generates an interview-preparation report with a match score, skill gaps, technical and behavioral questions, and a five-day preparation roadmap.
 
 ## Features
 
-- User Registration and Login
-- JWT-based Authentication
-- Resume Upload
-- Job Description Input
-- Self-Description Input
-- Resume and Job Description Analysis
-- Skill Gap Identification
-- Technical Assessment
-- Behavioral Assessment
-- Interview Report Generation
-- Job-specific Study Plan
-- ATS-friendly Resume Generation
-- Protected Routes
-- MongoDB-based Data Storage
+- Register and log in to a personal account.
+- Paste a target job description and upload a resume, enter a self-description, or provide both.
+- Generate and revisit saved, role-specific interview reports.
+- Review a match score, skill gaps, technical questions, behavioral questions, and suggested answers.
+- Follow a five-day preparation plan.
 
-## Tech Stack
+## Technology
 
-### Frontend
+- **Frontend:** React, Vite, React Router, SCSS
+- **Backend:** Node.js, Express, MongoDB, Mongoose
+- **AI:** Google Gemini API (`@google/genai`)
+- **Authentication:** JWT in an HTTP cookie
 
-- React.js
-- JavaScript
-- Vite
-- SCSS
+## Requirements
 
-### Backend
+- Node.js and npm
+- MongoDB, either local or MongoDB Atlas
+- A Google Gemini API key
 
-- Node.js
-- Express.js
-- MongoDB
-- JWT Authentication
-- REST APIs
+## Run locally
 
-### AI Integration
-
-- Gemini API
-
-## Project Structure
-
-```text
-AI-RESUME-ANALYZER/
-│
-├── Backend/
-│   ├── src/
-│   │   ├── config/
-│   │   │   └── database.js
-│   │   │
-│   │   ├── controllers/
-│   │   │   ├── auth.controller.js
-│   │   │   └── interview.controller.js
-│   │   │
-│   │   ├── middlewares/
-│   │   │   ├── auth.middleware.js
-│   │   │   └── file.middleware.js
-│   │   │
-│   │   ├── models/
-│   │   │   ├── blacklist.model.js
-│   │   │   ├── interviewReport.model.js
-│   │   │   └── user.model.js
-│   │   │
-│   │   ├── routes/
-│   │   │   ├── auth.routes.js
-│   │   │   └── interview.routes.js
-│   │   │
-│   │   ├── services/
-│   │   │
-│   │   ├── app.js
-│   │   └── server.js
-│   │
-│   ├── .env
-│   ├── package.json
-│   └── package-lock.json
-│
-├── Frontend/
-│   ├── public/
-│   │
-│   ├── src/
-│   │   ├── features/
-│   │   │   ├── auth/
-│   │   │   │   ├── components/
-│   │   │   │   │   └── Protected.jsx
-│   │   │   │   ├── hooks/
-│   │   │   │   │   └── useAuth.js
-│   │   │   │   ├── pages/
-│   │   │   │   │   ├── Login.jsx
-│   │   │   │   │   └── Register.jsx
-│   │   │   │   └── services/
-│   │   │   │       └── auth.api.js
-│   │   │   │
-│   │   │   └── interview/
-│   │   │       ├── hooks/
-│   │   │       ├── pages/
-│   │   │       ├── services/
-│   │   │       └── style/
-│   │   │
-│   │   ├── style/
-│   │   │   └── button.scss
-│   │   │
-│   │   ├── App.jsx
-│   │   ├── app.routes.jsx
-│   │   ├── auth.context.jsx
-│   │   ├── auth.form.scss
-│   │   ├── interview.context.jsx
-│   │   ├── main.jsx
-│   │   └── style.scss
-│   │
-│   ├── .gitignore
-│   ├── .eslintrc.json
-│   ├── index.html
-│   ├── package.json
-│   ├── package-lock.json
-│   └── vite.config.js
-│
-└── README.md
-```
-
-## How It Works
-
-1. Create an account or log in.
-2. Upload your resume.
-3. Enter the Job Description for the role you are targeting.
-4. Provide a self-description.
-5. Generate the interview report.
-6. The application analyzes the resume and Job Description.
-7. The system identifies relevant skills and potential skill gaps.
-8. Technical and behavioral insights are generated.
-9. A job-specific study plan is provided to help with preparation.
-10. An ATS-friendly resume can be generated based on the target Job Description.
-
-## Running the Project Locally
-
-### Prerequisites
-
-Make sure the following are installed on your system:
-
-- Node.js
-- npm
-- MongoDB
-- Git
-
-### 1. Clone the Repository
+### 1. Get the code
 
 ```bash
 git clone https://github.com/Garimaktr/AI-RESUME-ANALYZER.git
 cd AI-RESUME-ANALYZER
 ```
 
-### 2. Setup the Backend
+### 2. Configure and start the backend
 
-Open a terminal and navigate to the Backend folder:
-
-```bash
-cd Backend
-```
-
-Install the backend dependencies:
-
-```bash
-npm install
-```
-
-Create a `.env` file inside the `Backend` folder and configure the required environment variables.
-
-Example:
+Create `Backend/.env`:
 
 ```env
-PORT=3000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-GEMINI_API_KEY=your_gemini_api_key
+MONGO_URI=mongodb://127.0.0.1:27017/ai-resume-analyzer
+JWT_SECRET=replace-with-a-long-random-secret
+GOOGLE_GENAI_API_KEY=your-google-gemini-api-key
+FRONTEND_URL=http://localhost:5173
 ```
 
-Start the backend server:
-
-```bash
-npm run dev
-```
-
-The backend will run on:
-
-```text
-http://localhost:3000
-```
-
-### 3. Setup the Frontend
-
-Open another terminal while keeping the backend server running.
-
-Navigate to the Frontend folder:
-
-```bash
-cd Frontend
-```
-
-Install the frontend dependencies:
-
-```bash
-npm install
-```
-
-Start the frontend development server:
-
-```bash
-npm run dev
-```
-
-The frontend will run on:
-
-```text
-http://localhost:5173/
-```
-
-### 4. Access the Application
-
-Once both the backend and frontend servers are running, open your browser and visit:
-
-```text
-http://localhost:5173/
-```
-
-Make sure that both servers are running simultaneously.
-
-## Environment Variables
-
-Create the following file:
-
-```text
-Backend/.env
-```
-
-Add the required configuration:
-
-```env
-PORT=3000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-GEMINI_API_KEY=your_gemini_api_key
-```
-
-Replace the placeholder values with your actual configuration.
-
-> Do not commit your `.env` file or API keys to GitHub.
-
-## Backend
-
-The backend is built using Node.js and Express.js.
-
-Backend development server:
-
-```text
-http://localhost:3000
-```
-
-Start the backend using:
+Install dependencies and run the server:
 
 ```bash
 cd Backend
@@ -264,17 +51,17 @@ npm install
 npm run dev
 ```
 
-## Frontend
+The backend listens on `http://localhost:3000`.
 
-The frontend is built using React.js, Vite, and SCSS.
+### 3. Configure and start the frontend
 
-Frontend development server:
+In a second terminal, create `Frontend/.env`:
 
-```text
-http://localhost:5173/
+```env
+VITE_API_URL=http://localhost:3000
 ```
 
-Start the frontend using:
+Then install dependencies and start Vite:
 
 ```bash
 cd Frontend
@@ -282,95 +69,76 @@ npm install
 npm run dev
 ```
 
-## 🚀 Deployment & Environment Setup
+Open the URL printed by Vite (by default, `http://localhost:5173`).
 
-This project is configured for deployment using **Vercel** (Frontend) and **Render** (Backend) with MongoDB Atlas.
+Keep both servers running while using the app. The frontend sends credentialed requests to the backend; set `FRONTEND_URL` to the frontend origin. For multiple allowed origins, separate them with commas.
 
-### 🌐 Live URLs
-* **Frontend:** [https://ai-resume-analyzer-delta-rose.vercel.app](https://ai-resume-analyzer-delta-rose.vercel.app)
-* **Backend:** [https://ai-resume-analyzer-backend-fjdg.onrender.com](https://ai-resume-analyzer-backend-fjdg.onrender.com)
+## Environment variables
 
----
+| Variable | Location | Purpose |
+| --- | --- | --- |
+| `MONGO_URI` | `Backend/.env` | MongoDB connection string. |
+| `JWT_SECRET` | `Backend/.env` | Secret used to sign authentication tokens. |
+| `GOOGLE_GENAI_API_KEY` | `Backend/.env` | Google Gemini API key used to generate reports. |
+| `FRONTEND_URL` | `Backend/.env` | Allowed frontend origin(s) for credentialed CORS requests. Defaults to `http://localhost:5173`. |
+| `VITE_API_URL` | `Frontend/.env` | Backend base URL used by the frontend, such as `http://localhost:3000`. |
 
-### 🔑 Environment Variables
+The backend currently listens on port `3000`. Keep environment files and API keys private; do not commit them.
 
-#### 1. Frontend (`/Frontend/.env`)
-Create a `.env` file in the `Frontend` directory with the following variable:
+## Resume uploads
 
-| Variable | Description | Example |
-| :--- | :--- | :--- |
-| `VITE_API_URL` | Base URL of the live backend server | `https://ai-resume-analyzer-backend-fjdg.onrender.com` |
+The backend accepts uploads up to **3 MB**. PDF files are parsed for their text; other files are read as UTF-8 text. Use a PDF or plain-text resume for reliable results. You can also generate a report using only a self-description.
 
-> **Note:** Configure this variable in your **Vercel Dashboard** under **Project Settings > Environment Variables** for production.
+## API overview
 
-#### 2. Backend (`/Backend/.env`)
-Create a `.env` file in the `Backend` directory with the following variables:
+All endpoints are served by the backend at `http://localhost:3000`.
 
-| Variable | Description | Example |
-| :--- | :--- | :--- |
-| `PORT` | Port number for Express server | `5000` |
-| `MONGO_URI` | MongoDB Atlas Connection String | `mongodb+srv://...` |
-| `JWT_SECRET` | Secret key for JWT signing | `your_jwt_secret_key` |
-| `FRONTEND_URL` | Production URL of the deployed frontend | `https://ai-resume-analyzer-delta-rose.vercel.app` |
+| Method | Endpoint | Access | Description |
+| --- | --- | --- | --- |
+| `POST` | `/api/auth/register` | Public | Create an account. |
+| `POST` | `/api/auth/login` | Public | Log in and establish an authentication cookie. |
+| `GET` | `/api/auth/logout` | Public | Log out and clear the authentication cookie. |
+| `GET` | `/api/auth/get-me` | Authenticated | Get the current user. |
+| `POST` | `/api/interview` | Authenticated | Generate a report. Send `jobDescription`, `selfDescription`, and an optional `resume` file as multipart form data. |
+| `GET` | `/api/interview` | Authenticated | List the signed-in user's reports. |
+| `GET` | `/api/interview/report/:interviewId` | Authenticated | Retrieve one of the signed-in user's reports. |
 
----
+## Project layout
 
-### 🔒 CORS & Authentication Configuration
-Because the frontend and backend run on different domains, cross-origin requests requiring credentials (cookies/tokens) are explicitly enabled in `app.js`:
-* `Access-Control-Allow-Origin` is configured dynamically to accept requests from `FRONTEND_URL` and `http://localhost:5173`.
-* Preflight `OPTIONS` requests are handled cleanly via middleware to support secure cookie transfer across origins.
+```text
+AI-RESUME-ANALYZER/
+├── Backend/
+│   ├── src/
+│   │   ├── config/          # MongoDB connection
+│   │   ├── controllers/     # Authentication and interview handlers
+│   │   ├── middlewares/     # Authentication and file upload
+│   │   ├── models/          # Users, reports, and token blacklist
+│   │   ├── routes/          # Express API routes
+│   │   └── services/        # Gemini report generation
+│   ├── package.json
+│   └── server.js
+├── Frontend/
+│   ├── src/
+│   │   ├── features/        # Authentication and interview screens
+│   │   ├── App.jsx
+│   │   └── app.routes.jsx
+│   ├── package.json
+│   └── vite.config.js
+└── README.md
+```
 
-## Authentication
+## Scripts
 
-The application uses JWT-based authentication to secure user-specific resources and protected routes.
+Run these commands from the relevant project directory:
 
-Authentication includes:
-
-- User Registration
-- User Login
-- JWT Token Authentication
-- Protected Routes
-- Authentication Middleware
-- Token Blacklisting
-
-## Database
-
-MongoDB is used for storing application data.
-
-The backend contains models for:
-
-- Users
-- Interview Reports
-- Blacklisted Tokens
-
-## AI-Powered Analysis
-
-The application integrates the Gemini API to assist with resume and job description analysis.
-
-The system uses the provided resume, Job Description, and self-description to generate structured insights that help users understand their preparation requirements for a target role.
-
-## Future Improvements
-
-- Resume version management
-- Resume comparison across multiple Job Descriptions
-- Advanced interview preparation
-- Job recommendations based on resume skills
-- Improved resume scoring
-- Additional authentication methods
-- Enhanced dashboard and analytics
-- Cloud deployment
+| Directory | Command | Description |
+| --- | --- | --- |
+| `Backend` | `npm run dev` | Start the backend with nodemon. |
+| `Frontend` | `npm run dev` | Start the Vite development server. |
+| `Frontend` | `npm run build` | Create a production frontend build. |
+| `Frontend` | `npm run lint` | Run Oxlint. |
 
 ## Author
 
 **Garima Katiyar**
-
-GitHub: https://github.com/Garimaktr
-
-## Repository
-
-https://github.com/Garimaktr/AI-RESUME-ANALYZER
-
----
-
-If you find this project useful, consider giving the repository a ⭐ on GitHub.  
-       
+[GitHub](https://github.com/Garimaktr)
